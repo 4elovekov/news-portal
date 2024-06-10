@@ -22,6 +22,17 @@ button:active {
     background-color: var(--secondary-color);
 }
 
+input {
+    border-color: var(--primary-color) !important;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    border: 1px solid var(--primary-color);
+    padding: 5px 15px;
+}
+
 #root {
     display: flex;
     flex-direction: column;
@@ -106,7 +117,7 @@ button:active {
 
 .navbar__links a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: black;
     border: 1px solid var(--primary-color);
     padding: 5px 15px;
 }

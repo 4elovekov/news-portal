@@ -7,6 +7,7 @@ import AppRouter from "./components/AppRouter";
 
 function App() {
     const [isAuth, setIsAuth] = useState(false);
+    const [role, setRole] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -20,7 +21,9 @@ function App() {
         <AuthContext.Provider value={{
             isAuth,
             setIsAuth,
-            isLoading
+            isLoading,
+            role,
+            setRole
         }}>
             <BrowserRouter>
                 <Navbar />
