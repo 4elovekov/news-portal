@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import "../styles/App.css";
 import PostList from "../components/PostList";
 import MyButton from "../components/UI/button/MyButton";
@@ -11,10 +11,11 @@ import { useFetching } from "../hooks/useFetching";
 import PostService from "../API/PostService";
 import { getPageCount } from "../utils/pages";
 import Pagination from "../components/UI/pagination/Pagination";
+import { PostsContext } from "../context";
 //import {useObserver} from "../hooks/useObserver";
 
 function Posts() {
-    const [posts, setPosts] = useState([])
+    const {posts, setPosts, createPost} = useContext(PostsContext);
 
     // eslint-disable-next-line
     const [limit, setLimit] = useState(10)
@@ -33,7 +34,7 @@ function Posts() {
         setTotalPages(getPageCount(totalCount, limit));
     })
 
-/*    useObserver(lastElement, page < totalPages, isPostsLoading, () => {
+    /*useObserver(lastElement, page < totalPages, isPostsLoading, () => {
         setPage(page + 1)
     })*/
 
@@ -42,10 +43,10 @@ function Posts() {
         // eslint-disable-next-line
     }, [page]);
 
-    const createPost = (newPost) => {
-        setPosts([...posts, newPost])
-        setModal(false)
-    }
+    // const createPost = (newPost) => {
+    //     setPosts([...posts, newPost])
+    //     setModal(false)
+    // }
 
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id))
@@ -57,13 +58,12 @@ function Posts() {
 
     return (
         <div className="App">
-            <MyButton style={{marginTop: "30px"}} onClick={() => setModal(true)}>
+            <MyButton onClick={() => setModal(true)}>
                 Создать пост
             </MyButton>
             <MyModal visible={modal} setVisible={setModal}>
                 <PostForm create={createPost}/>
             </MyModal>
-            <hr style={{margin: "15px 0"}}/>
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
@@ -72,7 +72,7 @@ function Posts() {
                 <h1>Произошла ошибка ${postError}</h1>
             }
             <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Посты про JS"/>
-{/*            <div ref={lastElement} style={{height:"40px"}} />
+            {/*<div ref={lastElement} style={{height:"40px"}} />
             {isPostsLoading &&
                 <Loader/>
             }*/}

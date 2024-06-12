@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {privateRoutes, publicRoutes} from "../router/router";
+import {allRoutes, publicRoutes} from "../router/router";
 import {AuthContext} from "../context";
 import Loader from "./UI/Loader/Loader";
 
@@ -15,7 +15,7 @@ const AppRouter = () => {
         isAuth
             ?
             <Routes>
-                {privateRoutes.map((route, index) =>
+                {allRoutes.map((route, index) =>
                     <Route
                         key={index}
                         path={route.path}

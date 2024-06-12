@@ -9,6 +9,18 @@
     --secondary-color: #1FA5D1;
 }
 
+h1 {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 22px;
+}
+
+h3 {
+    margin-bottom: 15px;
+}
+
 button {
     border-color: var(--primary-color) !important;
     color: black !important;
@@ -22,7 +34,8 @@ button:active {
     background-color: var(--secondary-color);
 }
 
-input {
+input,
+textarea {
     border-color: var(--primary-color) !important;
 }
 

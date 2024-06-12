@@ -26,18 +26,18 @@ const PostIdPage = () => {
 
     return (
         <div style={{display:"flex", flexDirection:"column", alignItems:"center", maxWidth:"80vw"}}>
-            <h1 style={{marginTop:"20px"}}>Вы открыли страницу поста с ID = {params.id}</h1>
+            <h1>Вы открыли страницу поста с ID = {params.id}</h1>
             {isLoading && isComLoading
                 ?   <Loader/>
                 :   <>
                         {error
-                            ?   <h2 style={{marginTop:"20px"}}>Произошла ошибка при загрузке поста</h2>
+                            ?   <h2>Произошла ошибка при загрузке поста</h2>
                             :   <>
-                                    <h2 style={{display:"flex", justifyContent:"center", marginTop:"30px"}}>{post.id}. {post.title}</h2>
+                                    <h2 style={{display:"flex", justifyContent:"center"}}>{post.id}. {post.title}</h2>
                                     {comError
-                                        ?   <h2 style={{marginTop:"20px"}}>Произошла ошибка при загрузке комментариев</h2>
+                                        ?   <h2>Произошла ошибка при загрузке комментариев</h2>
                                         :   <>
-                                                <h3 style={{marginTop:"20px"}}>Комментарии</h3>
+                                                <h3>Комментарии</h3>
                                                 <div>
                                                     {comments.map(comm =>
                                                         <div key={comm.id} style={{marginTop: 15}}>

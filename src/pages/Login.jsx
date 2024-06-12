@@ -6,7 +6,7 @@ import {AuthContext} from "../context";
 import { accounts } from '../utils/accounts';
 
 const Login = () => {
-    const {isAuth, setIsAuth, setRole} = useContext(AuthContext);
+    const {setUserName, isAuth, setIsAuth, setRole} = useContext(AuthContext);
     const [showError, setShowError] = useState(false);
     const [loginValue, setLoginValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
@@ -16,7 +16,6 @@ const Login = () => {
         setLoginValue(e.target.value);
     };
 
-    // Обработчик изменения инпута для пароля
     const handlePasswordChange = (e) => {
         setPasswordValue(e.target.value);
     };
@@ -28,9 +27,12 @@ const Login = () => {
             if ((account.login === loginValue && account.password === passwordValue) || isRegister) {
                 setIsAuth(true);
                 localStorage.setItem('auth', 'true')
+                setUserName(account.login)
+                localStorage.setItem('userName', account.login)
+                setRole(account.role)
+                localStorage.setItem('role', account.role)
                 setShowError(false)
                 setIsRegister(false)
-                setRole(account.role)
                 break
             }
         }
