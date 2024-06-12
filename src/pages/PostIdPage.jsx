@@ -16,12 +16,6 @@ const PostIdPage = () => {
         img.onerror = () => setIsImgValid(false);
     }, [post.imgUrl])
 
-    useEffect(() => {
-        //fetchPostById(params.id)
-        //fetchComments(params.id)
-        // eslint-disable-next-line
-    }, []);
-
     return (
         <div style={{display:"flex", flexDirection:"column", alignItems:"center", maxWidth:"80vw"}}>
             <h1 style={{marginBottom: "15px"}} >{post.title}</h1>

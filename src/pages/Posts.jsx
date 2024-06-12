@@ -10,7 +10,7 @@ import Pagination from "../components/UI/pagination/Pagination";
 import { PostsContext } from "../context";
 
 function Posts() {
-    const {posts, setPosts} = useContext(PostsContext);
+    const {posts, setPosts, removePost} = useContext(PostsContext);
 
     // eslint-disable-next-line
     const [limit, setLimit] = useState(10)
@@ -31,10 +31,6 @@ function Posts() {
         //fetchPosts(limit, page);
         // eslint-disable-next-line
     }, [page]);
-
-    const removePost = (post) => {
-        setPosts(posts.filter(p => p.id !== post.id))
-    }
 
     const changePage = (page) => {
         setPage(page)

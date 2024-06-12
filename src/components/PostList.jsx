@@ -2,21 +2,36 @@ import React from 'react';
 import PostItem from "./PostItem";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 
-const PostList = ({posts, title, remove}) => {
+const PostList = ({posts, title, remove, titleSize, openInEditor}) => {
 
     if (!posts.length) {
-        return (
-            <h1 style={{textAlign: 'center'}}>
-                На данный момент новости отсутствуют
-            </h1>
-        )
+        if (titleSize === "h2") {
+            return (
+                <h2 style={{textAlign: 'center'}}>
+                    На данный момент новости отсутствуют
+                </h2>
+            )
+        } else {
+            return (
+                <h1 style={{textAlign: 'center'}}>
+                    На данный момент новости отсутствуют
+                </h1>
+            )
+        }
     }
 
     return (
         <div>
-            <h1 style={{textAlign: 'center'}}>
+            
+            {titleSize === "h2"
+            ?
+            title && <h2 style={{textAlign: 'center'}}>
                 {title}
-            </h1>
+            </h2>
+            :
+            title && <h1 style={{textAlign: 'center'}}>
+                {title}
+            </h1>}
             <TransitionGroup>
                 {posts.map((post, index) =>
                     <CSSTransition
@@ -24,7 +39,7 @@ const PostList = ({posts, title, remove}) => {
                         timeout={400}
                         classNames="post"
                     >
-                        <PostItem remove={remove} number={index + 1} post={post} />
+                        <PostItem remove={remove} number={index + 1} post={post} openInEditor={openInEditor}/>
                     </CSSTransition>
                 )}
             </TransitionGroup>

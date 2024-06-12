@@ -11,6 +11,8 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [userName, setUserName] = useState("");
     const [posts, setPosts] = useState([])
+    const [postsInModeration, setPostsInModeration] = useState([])
+    const [postsInRevision, setPostsInRevision] = useState([])
 
     useEffect(() => {
         if(localStorage.getItem("auth")) {
@@ -25,16 +27,45 @@ function App() {
         if(localStorage.getItem("posts")) {
             setPosts(JSON.parse(localStorage.getItem("posts")))
         }
+        if(localStorage.getItem("postsInModeration")) {
+            setPostsInModeration(JSON.parse(localStorage.getItem("postsInModeration")))
+        }
         setIsLoading(false)
     }, []);
+    
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
+        setPostsInModeration(postsInModeration.filter(p => p.id !== newPost.id))
+        setPostsInRevision(postsInRevision.filter(p => p.id !== newPost.id))
+    }
+
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
 
     useEffect(() => {
         localStorage.setItem("posts", JSON.stringify(posts))
     }, [posts])
 
-    const createPost = (newPost) => {
-        setPosts([...posts, newPost])
+    const createPostInModeration = (newPost) => {
+        setPostsInModeration([...postsInModeration, newPost])
+        setPosts(posts.filter(p => p.id !== newPost.id))
+        setPostsInRevision(postsInRevision.filter(p => p.id !== newPost.id))
     }
+
+    useEffect(() => {
+        localStorage.setItem("postsInModeration", JSON.stringify(postsInModeration))
+    }, [postsInModeration])
+
+    const createPostInRevision = (newPost) => {
+        setPostsInRevision([...postsInRevision, newPost])
+        setPosts(posts.filter(p => p.id !== newPost.id))
+        setPostsInModeration(postsInModeration.filter(p => p.id !== newPost.id))
+    }
+
+    useEffect(() => {
+        localStorage.setItem("postsInRevision", JSON.stringify(postsInRevision))
+    }, [postsInRevision])
 
     return (
         <AuthContext.Provider value={{
@@ -49,7 +80,14 @@ function App() {
             <PostsContext.Provider value={{
                 posts,
                 setPosts,
-                createPost
+                postsInModeration,
+                setPostsInModeration,
+                postsInRevision,
+                setPostsInRevision,
+                createPost,
+                createPostInModeration,
+                createPostInRevision,
+                removePost
             }}>
                 <BrowserRouter>
                     <Navbar />

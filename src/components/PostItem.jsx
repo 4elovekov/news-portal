@@ -4,8 +4,13 @@ import {useNavigate} from "react-router-dom";
 
 const   PostItem = (props) => {
     const navigate = useNavigate()
-    function transitToPost(id) {
-        navigate(`/posts/${id}`, { replace: true })
+
+    const openButtonHandleClick = (id) => {
+        if (props.openInEditor === "true") {
+            navigate(`/postsEditor/${id}`, { replace: true })
+        } else {
+            navigate(`/posts/${id}`, { replace: true })
+        }
     }
 
     const [isImgValid, setIsImgValid] = useState(true)
@@ -37,8 +42,8 @@ const   PostItem = (props) => {
                 </div>
             </div>
             <div className="post__btns">
-                <MyButton onClick={() => transitToPost(props.post.id)}>
-                    Открыть
+                <MyButton onClick={() => openButtonHandleClick(props.post.id)}>
+                    {props.openInEditor === "true" ? "Модерировать" : "Открыть"}
                 </MyButton>
                 <MyButton onClick={() => props.remove(props.post)}>
                     Удалить

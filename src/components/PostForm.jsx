@@ -53,7 +53,7 @@ const PostForm = ({create}) => {
                 type="text"
                 placeholder="Теги через запятую"
             />
-            <MyButton onClick={addNewPost}>Создать новость</MyButton>
+            <MyButton onClick={addNewPost}>Отправить новость на проверку</MyButton>
         </form>
     );
 };

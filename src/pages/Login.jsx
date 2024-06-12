@@ -49,7 +49,7 @@ const Login = () => {
     return (
         <div>
             <h1 style={{textAlign: 'center'}}>{isRegister ? 'Регистрация' : 'Вход'}</h1>
-            <form style={{display: 'flex', flexDirection: 'column', minWidth: '360px'}} onSubmit={login}>
+            <form style={{display: 'flex', flexDirection: 'column', minWidth: '360px', marginBottom: "20px"}} onSubmit={login}>
                 <MyInput 
                     value={loginValue}
                     onChange={handleUsernameChange}
@@ -66,6 +66,12 @@ const Login = () => {
                 {!isRegister ? <MyButton style={{alignSelf: 'center', width: '100%'}} onClick={register}>Регистрация</MyButton> : null}
                 {showError ? <InputError>Неверный логин или пароль</InputError> : null}
             </form>
+            <p style={{marginBottom:"10px"}}>Аккаунты:</p>
+            {accounts.map((account, index) => (
+                <p key={index} style={{marginBottom:"5px"}}>
+                    Role: {account.role}, Login: {account.login}, Password: {account.password}
+                </p>
+            ))}
         </div>
     );
 };
