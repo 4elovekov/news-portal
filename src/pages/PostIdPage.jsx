@@ -22,7 +22,7 @@ const PostIdPage = () => {
             {post.tags && <div style={{marginBottom: "30px"}} className="post__tags">
                     {post.tags.split(',').map( (item, index) => <p key={index}>{item.trim()}</p>)}
                 </div>}
-            {isImgValid && <img style={{marginBottom: "30px"}} src={post.imgUrl} alt='Preview'></img>}
+            {isImgValid && <img style={{marginBottom: "30px", maxWidth: "300px"}} src={post.imgUrl} alt='Preview'></img>}
             {post.body && <p>{post.body}</p>}
         </div>
     );

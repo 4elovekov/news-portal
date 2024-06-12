@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import MyButton from "./UI/button/MyButton";
 import {useNavigate} from "react-router-dom";
+import { AuthContext } from '../context';
 
-const   PostItem = (props) => {
+const PostItem = (props) => {
+    const {role} = useContext(AuthContext);
     const navigate = useNavigate()
 
     const openButtonHandleClick = (id) => {
@@ -45,9 +47,11 @@ const   PostItem = (props) => {
                 <MyButton onClick={() => openButtonHandleClick(props.post.id)}>
                     {props.openInEditor === "true" ? "Модерировать" : "Открыть"}
                 </MyButton>
+                {role === "admin" ?
                 <MyButton onClick={() => props.remove(props.post)}>
                     Удалить
                 </MyButton>
+                : null}
             </div>
         </div>
     );
