@@ -22,12 +22,18 @@ function App() {
         if(localStorage.getItem("role")) {
             setRole(localStorage.getItem("role"))
         }
+        if(localStorage.getItem("posts")) {
+            setPosts(JSON.parse(localStorage.getItem("posts")))
+        }
         setIsLoading(false)
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("posts", JSON.stringify(posts))
+    }, [posts])
+
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
-        //setModal(false)
     }
 
     return (

@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {AuthContext, PostsContext} from "../context";
-import MyInput from '../components/UI/input/MyInput';
 import PostForm from '../components/PostForm';
 
 const PersonalAccount = () => {
@@ -8,7 +7,6 @@ const PersonalAccount = () => {
     const {createPost} = useContext(PostsContext);
 
     const getMarkup = (role) => {
-        console.log("getMarkup", role)
         let result;
         switch (role) {
             case "admin":

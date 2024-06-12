@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import MyTextArea from './UI/textArea/MyTextArea';
 
 const PostForm = ({create}) => {
     const [post, setPost] = useState({title: '', body: '', imgUrl: '', tags: ''})
+    const fileInputRef = useRef(null);
 
 
     const addNewPost = (e) => {
@@ -14,6 +15,7 @@ const PostForm = ({create}) => {
         }
         create(newPost)
         setPost({title: '', body: '', imgUrl: '', tags: ''})
+        fileInputRef.current.value = "";
     }
 
     const handleFileChange = (event) => {
@@ -36,6 +38,7 @@ const PostForm = ({create}) => {
                 onChange={handleFileChange}
                 type="file"
                 accept="image/*"
+                ref={fileInputRef}
             />
             {post.imgUrl && <img style={{maxWidth: "200px", maxHeight: "200px", height: "auto", width: "auto", objectFit: "cover"}} src={post.imgUrl} alt="Preview" />}
             <MyTextArea

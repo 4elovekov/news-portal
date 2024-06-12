@@ -55,6 +55,7 @@ a {
 
 .App {
     max-width: 800px;
+    width: 80%;
     overflow-x: hidden;
 }
 
@@ -64,8 +65,46 @@ a {
     border: 2px solid var(--primary-color);
     margin-top: 15px;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 30px;
 }
+
+.post__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post__content {
+    width: 100%;
+    margin-right: 20px;
+}
+
+.post__tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.post__tags p {
+    border: 1px solid var(--primary-color);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.post__tags p:hover {
+    background-color: var(--primary-color);
+}
+
+.post__img img {
+    max-width: 200px;
+    width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    border: 1px solid var(--primary-color);
+}
+
 
 .post__btns {
     display: flex;
