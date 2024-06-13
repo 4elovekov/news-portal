@@ -27,11 +27,6 @@ function Posts() {
         setTotalPages(getPageCount(totalCount, limit));
     })
 
-    useEffect(() => {
-        //fetchPosts(limit, page);
-        // eslint-disable-next-line
-    }, [page]);
-
     const changePage = (page) => {
         setPage(page)
     }
